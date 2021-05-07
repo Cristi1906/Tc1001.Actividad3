@@ -122,8 +122,20 @@ def move():
     up()
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
-
+    
+    i=0
     for point, course in ghosts:
+        distx=pacman.x-(ghosts[i][0][0])
+        disty=pacman.y-(ghosts[i][0][1])
+        if distx>0:
+            xx=0
+        else:
+            xx=1
+        if disty>0:
+            yy=2
+        else:
+            yy=3 
+        i+=1
         if valid(point + course):
             point.move(course)
         else:
@@ -133,7 +145,8 @@ def move():
                 vector(0, 10),
                 vector(0, -10),
             ]
-            plan = choice(options)
+            diroptions = [options[xx],options[yy]]
+            plan = choice(diroptions)
             course.x = plan.x
             course.y = plan.y
 
